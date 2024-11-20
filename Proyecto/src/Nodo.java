@@ -1,5 +1,14 @@
-public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+public class Nodo {
+
+    int dato;
+
+    Nodo siguiente;
+    Nodo anterior;
+
+    Nodo (int valor) {
+        dato = valor;
+        siguiente = null;
+        anterior = null;
     }
+
 }
