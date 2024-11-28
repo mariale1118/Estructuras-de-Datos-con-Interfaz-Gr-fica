@@ -1,19 +1,19 @@
-
+import javax.swing.JOptionPane;
 
 public class Cola
 {
-    private Nodo headCola, tailCola;
-    String cola = "";
+    private Nodo headCola, tailCola; //punteros
+    String cola = ""; //cuál es el contenido de la cola
     
     public Cola(){
         headCola = null;
         tailCola = null;
-        
+        //valores iniciales
     }
     
     
     //verificar si la cola está vacía
-    public boolean ColaVacia(){
+    public boolean colaVacia(){
         if (headCola==null){
             return true;
         } else { 
@@ -24,9 +24,54 @@ public class Cola
     //insertar a la cola
     public void Insertar (int informacion){
         Nodo nuevoNodo = new Nodo();
-        nuevoNodo.informacion = informacion;
+        nuevoNodo.informacion = informacion; //la info del nodo va a ser igual al int que le pasaremos 
         nuevoNodo.siguiente = null;
+        
+        if (colaVacia()) {
+            headCola = nuevoNodo;
+            tailCola = nuevoNodo;
+        } else {
+            tailCola.siguiente = nuevoNodo;
+            tailCola = nuevoNodo;
+        }
+        }
+        
+    //método para extraer de la cola 
+    public int Extraer() {
+        if (!colaVacia()) {
+            int informacion = headCola.informacion;
+            
+            if(headCola == tailCola) { //quiere decir que es el último elemento en la cola
+            headCola = null; //no están apuntado a nada 
+            tailCola = null; 
+            } else {
+                headCola = headCola.siguiente;
+            }
+            return informacion; //que devuelva el valor extraído 
+        }else {
+            return Integer.MAX_VALUE;  //puede ser 0 pero por buenas prácticas integer.MAS_VALUE
+        }
+                
+    }
+    
+    //método para mostrar el contenido de la cola/ su recorrido
+    public void MostrarContenido() {
+        Nodo recorrido = headCola;
+        String colaInvertida = ""; //para invertir la cadena de texto cuando se imprime
+        
+        while(recorrido != null) {
+         cola += recorrido.informacion + " ";
+         recorrido = recorrido.siguiente;
+        }
+        
+        String cadena [] = cola.split(" ");//split permite separar los caracteres para que no invierta toda la cadena
+        for (int i = cadena.length -1; i >= 0; i--) {
+            colaInvertida += " " + cadena[i];}
+        JOptionPane.showMessageDialog(null, colaInvertida);
+        cola = "";
     }
 }
+    
+    
     
 
