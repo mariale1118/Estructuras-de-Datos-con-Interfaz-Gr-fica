@@ -1,4 +1,4 @@
-//Al final esta clase no se utilizó porque lo que está aquí se implementó en la clase interfaz
+//Al final esta clase no se utilizó porque lo que está aquí se implementó en la clase interfaz pero no lo pude eliminar jeje
 //import javax.swing.JOptionPane;
 //public class ClasePrincipal
 //{
