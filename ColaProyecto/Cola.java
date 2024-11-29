@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 public class Cola
 {
-    private Nodo headCola, tailCola; //punteros
+    private NodoC headCola, tailCola; //punteros
     String cola = ""; //cuál es el contenido de la cola
     
     public Cola(){
@@ -23,7 +23,7 @@ public class Cola
     
     //insertar a la cola
     public void Insertar (int informacion){
-        Nodo nuevoNodo = new Nodo();
+        NodoC nuevoNodo = new NodoC();
         nuevoNodo.informacion = informacion; //la info del nodo va a ser igual al int que le pasaremos 
         nuevoNodo.siguiente = null;
         
@@ -56,7 +56,7 @@ public class Cola
     
     //método para mostrar el contenido de la cola/ su recorrido
     public void MostrarContenido() {
-        Nodo recorrido = headCola;
+        NodoC recorrido = headCola;
         String colaInvertida = ""; //para invertir la cadena de texto cuando se imprime
         
         while(recorrido != null) {
