@@ -27,7 +27,10 @@ Agregar un Nodo: Puedes agregar un nodo al árbol seleccionando la opción "Agre
 
 Eliminar un Nodo: Si deseas eliminar un nodo del árbol, selecciona la opción "Eliminar Nodo". Se te pedirá que ingreses el valor del nodo que deseas eliminar. Si el nodo existe en el árbol, se eliminará y el árbol se reorganizará para mantener su estructura.
 Buscar un Nodo: La opción "Buscar Nodo" te permitirá buscar un nodo específico en el árbol. Debes ingresar el valor del nodo que deseas buscar. Si el nodo está presente, el sistema te lo notificará, de lo contrario, te dirá que no se ha encontrado.
-Cola
+
+El árbol binario de búsqueda se dibuja de manera visual en el panel central de la ventana. Los nodos se dibujan como círculos rojos con su valor dentro, y las conexiones entre los nodos se dibujan como líneas negras. Esto te permitirá ver de manera gráfica cómo se organiza el árbol a medida que insertas o eliminas nodos.
+
+Cola: 
 
 Insertar un Nodo: Para insertar un nodo en la cola, selecciona la opción correspondiente en el menú "Cola". Se te pedirá que ingreses un valor para el nodo. El valor ingresado se añadirá al final de la cola.
 
@@ -35,8 +38,6 @@ Extraer un Nodo: Puedes extraer el primer nodo de la cola seleccionando la opci�
 
 Mostrar Contenido: Seleccionando la opción "Mostrar Contenido", podrás ver los elementos actuales de la cola. Los elementos serán mostrados en el orden en que fueron insertados, desde el primero hasta el último.
 Visualización del Árbol
-
-El árbol binario de búsqueda se dibuja de manera visual en el panel central de la ventana. Los nodos se dibujan como círculos rojos con su valor dentro, y las conexiones entre los nodos se dibujan como líneas negras. Esto te permitirá ver de manera gráfica cómo se organiza el árbol a medida que insertas o eliminas nodos.
 
 
 Este proyecto requiere de un entorno de desarrollo que soporte Java y es necesario tener instalada la versión 1.8 o superior de Java.
