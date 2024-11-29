@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Cola
+comment1.params=
+comment1.target=Cola()
+comment2.params=
+comment2.target=boolean\ ColaVacia()
+comment3.params=informacion
+comment3.target=void\ Insertar(int)
+numComments=4
