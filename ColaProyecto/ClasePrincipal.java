@@ -8,8 +8,8 @@ public class ClasePrincipal
         do {
             try {
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, 
-                 "Menu de opciones/n/n" + "1 Insertar nodo/n" + "2 Extraer nodo/n" +
-                 "3 Mostrar contenido cola/n" + "4 salir/n/n"));
+                 "Menu de opciones/" + "1 Insertar nodo/" + "2 Extraer nodo/" +
+                 "3 Mostrar contenido cola/" + "4 salir/"));
                 
                  switch(opcion) {
                      case 1 :
