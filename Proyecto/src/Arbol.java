@@ -84,7 +84,7 @@ public class Arbol {
             while (sucesor.anterior != null) {
                 sucesor = sucesor.anterior;
             }
-            nodo.dato = sucesor.dato;
+            nodo.dato = sucesor.dato; //cambia el dato del nodo a eliminar por el del sucesor
             nodo.siguiente = eliminarNodoRec(nodo.siguiente, sucesor.dato);
             return nodo;
         }
@@ -107,20 +107,22 @@ public class Arbol {
         }
     }
 
+
     public void dibujarArbol(Graphics g, int x, int y, int xOffset) {
         dibujarNodo(g, raiz, x, y, xOffset);
     }
 
+    //metodo para dibujar el arbol
     private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
         if (nodo != null) {
-            g.setColor(Color.RED);
-            g.fillOval(x - 15, y - 15, 30, 30);
-            g.setColor(Color.WHITE);
-            g.drawString(String.valueOf(nodo.dato), x - 5, y + 5);
+            g.setColor(Color.BLACK); //color de los nodos
+            g.fillOval(x - 15, y - 15, 30, 30); //dibuja el nodo
+            g.setColor(Color.WHITE); //color de la letra
+            g.drawString(String.valueOf(nodo.dato), x - 5, y + 5); //dibuja el valor del nodo
 
             if (nodo.anterior != null) {
                 g.setColor(Color.BLACK);
-                g.drawLine(x, y, x - xOffset, y + 50);
+                g.drawLine(x, y, x - xOffset, y + 50); //dibuja la linea
                 dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
             }
             if (nodo.siguiente != null) {
