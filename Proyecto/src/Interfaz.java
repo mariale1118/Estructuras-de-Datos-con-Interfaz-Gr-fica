@@ -3,22 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Interfaz extends JFrame {
 
-    private Arbol arbol; // creo arbol
-    private JPanel panelArbol; // creo panel
+    private Arbol arbol; // Creo árbol
+    private Cola cola;   // Creo cola
+    private JPanel panelArbol; // Creo panel
 
     public Interfaz() {
         arbol = new Arbol();
-        setTitle("Árbol Binario de Búsqueda");
-        setSize(600, 400); // tamaño de la ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // cerrar al salir
-        setLocationRelativeTo(null); // centrar
+        cola = new Cola();
+        setTitle("Árbol Binario de Búsqueda y Cola");
+        setSize(600, 400); // Tamaño de la ventana
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cerrar al salir
+        setLocationRelativeTo(null); // Centrar
 
-        // menu con las opciones del arbol
+        // Menú con las opciones del árbol
         JMenuBar menuBar = new JMenuBar();
-        JMenu menuArbol = new JMenu("Árbol"); 
+        JMenu menuArbol = new JMenu("Árbol");
         JMenuItem agregarItem = new JMenuItem("Agregar Nodo");
         JMenuItem eliminarItem = new JMenuItem("Eliminar Nodo");
         JMenuItem buscarItem = new JMenuItem("Buscar Nodo");
@@ -28,6 +29,13 @@ public class Interfaz extends JFrame {
         menuArbol.add(buscarItem);
         menuBar.add(menuArbol);
         setJMenuBar(menuBar);
+
+        // Menú con las opciones de la cola
+        JMenu menuCola = new JMenu("Cola");
+        JMenuItem menuColaItem = new JMenuItem("Abrir Menú de Cola");
+
+        menuCola.add(menuColaItem);
+        menuBar.add(menuCola);
 
         // Panel para el dibujo del árbol
         panelArbol = new JPanel() {
@@ -75,6 +83,53 @@ public class Interfaz extends JFrame {
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
             }
+        });
+
+        // Menú de cola
+        menuColaItem.addActionListener(e -> {
+            int opcion = 0;
+            do {
+                try {
+                    String opcionStr = JOptionPane.showInputDialog(this,
+                            "Menú de Cola:\n" +
+                                    "1. Insertar Nodo\n" +
+                                    "2. Extraer Nodo\n" +
+                                    "3. Mostrar Contenido\n" +
+                                    "4. Salir");
+                    opcion = Integer.parseInt(opcionStr);
+
+                    switch (opcion) {
+                        case 1:
+                            int nodoInformacion = Integer.parseInt(JOptionPane.showInputDialog(this,
+                                    "Ingrese el valor a guardar en la cola:"));
+                            cola.Insertar(nodoInformacion);
+                            JOptionPane.showMessageDialog(this, "Nodo insertado con éxito.");
+                            break;
+                        case 2:
+                            if (!cola.colaVacia()) {
+                                JOptionPane.showMessageDialog(this, "Se extrajo el nodo con valor: " + cola.Extraer());
+                            } else {
+                                JOptionPane.showMessageDialog(this, "La cola está vacía.");
+                            }
+                            break;
+                        case 3:
+                            if (!cola.colaVacia()) {
+                                cola.MostrarContenido();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "La cola está vacía.");
+                            }
+                            break;
+                        case 4:
+                            JOptionPane.showMessageDialog(this, "Saliendo del menú de cola.");
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(this, "Opción no disponible.");
+                            break;
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
+                }
+            } while (opcion != 4);
         });
     }
 
