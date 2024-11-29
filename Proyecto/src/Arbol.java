@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Arbol {
     
 
@@ -56,8 +58,8 @@ public class Arbol {
         }
     }
 
-    public void eliminarNodo(int valor) {
-        raiz = eliminarNodoRec(raiz, valor);
+    public void eliminarNodo(int dato) {
+        raiz = eliminarNodoRec(raiz, dato);
     }
 
     public Nodo eliminarNodoRec(Nodo nodo, int dato) {
@@ -105,7 +107,32 @@ public class Arbol {
         }
     }
 
-    public static void main(String[] args) {
+    public void dibujarArbol(Graphics g, int x, int y, int xOffset) {
+        dibujarNodo(g, raiz, x, y, xOffset);
+    }
+
+    private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
+        if (nodo != null) {
+            g.setColor(Color.RED);
+            g.fillOval(x - 15, y - 15, 30, 30);
+            g.setColor(Color.WHITE);
+            g.drawString(String.valueOf(nodo.dato), x - 5, y + 5);
+
+            if (nodo.anterior != null) {
+                g.setColor(Color.BLACK);
+                g.drawLine(x, y, x - xOffset, y + 50);
+                dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
+            }
+            if (nodo.siguiente != null) {
+                g.setColor(Color.BLACK);
+                g.drawLine(x, y, x + xOffset, y + 50);
+                dibujarNodo(g, nodo.siguiente, x + xOffset, y + 50, xOffset / 2);
+            }
+        }
+    }
+
+
+/*   public static void main(String[] args) {
 
         Arbol arbol = new Arbol();
         arbol.insertar(1);
@@ -119,5 +146,5 @@ public class Arbol {
         arbol.imprimir(arbol.raiz);
 
 
-    }
+    }*/
 }

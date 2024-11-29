@@ -29,13 +29,59 @@ public class Interfaz extends JFrame {
         menuBar.add(menuArbol);
         setJMenuBar(menuBar);
 
-    }
- 
+        // Panel para el dibujo del árbol
+        panelArbol = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                arbol.dibujarArbol(g, getWidth() / 2, 30, getWidth() / 4);
+            }
+        };
+        panelArbol.setBackground(Color.WHITE);
+        add(panelArbol, BorderLayout.CENTER);
 
-    /*public static void main(String[] args) {
+        // Acción para agregar nodo
+        agregarItem.addActionListener(e -> {
+            String valorStr = JOptionPane.showInputDialog(this, "Ingrese el valor del nodo:");
+            try {
+                int valor = Integer.parseInt(valorStr);
+                arbol.insertar(valor);
+                panelArbol.repaint(); // Actualizar el dibujo del árbol
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
+            }
+        });
+
+        // Acción para eliminar nodo
+        eliminarItem.addActionListener(e -> {
+            String valorStr = JOptionPane.showInputDialog(this, "Ingrese el valor del nodo a eliminar:");
+            try {
+                int valor = Integer.parseInt(valorStr);
+                arbol.eliminarNodo(valor);
+                panelArbol.repaint(); // Actualizar el dibujo del árbol
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
+            }
+        });
+
+        // Acción para buscar nodo
+        buscarItem.addActionListener(e -> {
+            String valorStr = JOptionPane.showInputDialog(this, "Ingrese el valor del nodo a buscar:");
+            try {
+                int valor = Integer.parseInt(valorStr);
+                boolean encontrado = arbol.buscar(valor);
+                String mensaje = encontrado ? "Nodo encontrado" : "No se encontró el nodo";
+                JOptionPane.showMessageDialog(this, mensaje);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Interfaz ventana = new Interfaz();
             ventana.setVisible(true);
         });
-    }*/
+    }
 }
