@@ -13,7 +13,7 @@ Clase Nodo: Esta clase define un nodo que es utilizado tanto en el árbol binari
 
 Clase Árbol: La clase Arbol representa un árbol binario de búsqueda. Un árbol binario de búsqueda es una estructura de datos que mantiene los valores organizados de manera que los nodos de la subrama izquierda tienen valores menores y los nodos de la subrama derecha tienen valores mayores que el nodo raíz. Esta clase proporciona métodos para insertar nodos, eliminar nodos y buscar nodos en el árbol. Los métodos son recursivos y permiten realizar estas operaciones de manera eficiente.
 
-Clase Cola: La clase Cola implementa una cola utilizando nodos. La cola sigue el principio FIFO (First In, First Out), lo que significa que el primer elemento en ser insertado será el primero en ser extraído. La clase permite insertar nuevos elementos, extraer elementos de la cola y mostrar el contenido actual de la cola.
+Clase Cola: La clase Cola implementa una cola utilizando nodos. La cola sigue el principio FIFO (First In, First Out), lo que significa que el primer elemento en ser insertado será el primero en ser extraído. La clase permite insertar nuevos elementos, extraer elementos de la cola y mostrar el contenido actual de la cola. El nodo primero a la derecha es el primero a la derecha, el más a la izquierda es la cola
 
 Clase Interfaz: La clase Interfaz es la que proporciona la interfaz gráfica al usuario. Utiliza JFrame para mostrar una ventana interactiva que permite a los usuarios trabajar con el árbol binario y la cola. A través de menús y cuadros de diálogo, los usuarios pueden agregar, eliminar y buscar nodos en el árbol, así como insertar, extraer y mostrar el contenido de la cola.
 Cómo Utilizar el Programa
