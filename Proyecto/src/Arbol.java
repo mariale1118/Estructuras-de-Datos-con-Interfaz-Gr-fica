@@ -1,7 +1,21 @@
+import java.awt.*;
+
 public class Arbol {
     
+
+    Nodo raiz;
+
+    public Arbol() {
+        raiz = null;
+    }
+ 
+
+    public void insertar(int dato) {
+        raiz = insertarRec(raiz, dato);
+    }
+
     //metodo para insertar de manera recursiva
-    public Nodo insertar(Nodo nodo, int dato) {
+    public Nodo insertarRec(Nodo nodo, int dato) {
         //caso base
         if (nodo == null) {
             nodo = new Nodo(dato);
@@ -12,34 +26,75 @@ public class Arbol {
         }
         //tipico movimiento de insercion
         if (dato < nodo.dato) {
-            nodo.anterior = insertar(nodo.anterior, dato);
+            nodo.anterior = insertarRec(nodo.anterior, dato);
         } else{
-            nodo.siguiente = insertar(nodo.siguiente, dato);
+            nodo.siguiente = insertarRec(nodo.siguiente, dato);
         }
 
         return nodo;
         
     }
-    //metodo recursivo para buscar
-    public Nodo buscar(Nodo nodo, int dato) {
-        if (nodo == null) {
-            return null;
-        }
-        //caso base encontro el dato
-        if (dato == nodo.dato) {
-            return nodo;
-        }
-        //tipico movimiento de busqueda
-        if (dato < nodo.dato) {
-            return buscar(nodo.anterior, dato);
-        } else {
-            return buscar(nodo.siguiente, dato);
-        }
+
+    public boolean buscar(int dato) {
+        return buscarRec(raiz, dato);
     }
 
 
-    public Nodo eliminarNodo(Nodo nodo, int dato) {
+    //metodo recursivo para buscar
+    public boolean buscarRec(Nodo nodo, int dato) {
+        //caso base
+        if (nodo == null) {
+            return false;
+        }
+        //caso base
+        if (dato == nodo.dato) {
+            return true;
+        }
+        //tipico movimiento de busqueda
+        if (dato < nodo.dato) {
+            return buscarRec(nodo.anterior, dato);
+        } else {
+            return buscarRec(nodo.siguiente, dato);
+        }
+    }
 
+    public void eliminarNodo(int dato) {
+        raiz = eliminarNodoRec(raiz, dato);
+    }
+
+    public Nodo eliminarNodoRec(Nodo nodo, int dato) {
+        if (nodo == null) {
+            return null;
+        }
+        //caso base
+        if (dato == nodo.dato) {
+            //caso 1: no tiene hijos
+            if (nodo.anterior == null && nodo.siguiente == null) {
+                return null;
+            }
+            //caso 2: tiene un hijo
+            if (nodo.anterior == null) {
+                return nodo.siguiente;
+            }
+            if (nodo.siguiente == null) {
+                return nodo.anterior;
+            }
+            //caso 3: tiene dos hijos
+            Nodo sucesor = nodo.siguiente;
+            while (sucesor.anterior != null) {
+                sucesor = sucesor.anterior;
+            }
+            nodo.dato = sucesor.dato; //cambia el dato del nodo a eliminar por el del sucesor
+            nodo.siguiente = eliminarNodoRec(nodo.siguiente, sucesor.dato);
+            return nodo;
+        }
+        //tipico movimiento arbol para eliminar
+        if (dato < nodo.dato) {
+            nodo.anterior = eliminarNodoRec(nodo.anterior, dato);
+        } else {
+            nodo.siguiente = eliminarNodoRec(nodo.siguiente, dato);
+        }
+        return nodo;
     }
 
     
@@ -52,17 +107,46 @@ public class Arbol {
         }
     }
 
-    public static void main(String[] args) {
-        Nodo nodo = new Nodo(3);
-        Arbol arbol = new Arbol();
-        arbol.insertar(nodo, 1);
-        arbol.insertar(nodo, 6);
-        arbol.insertar(nodo, 2);
-        arbol.insertar(nodo, 5);
-        arbol.insertar(nodo, 4);
 
-        arbol.imprimir(nodo);
-
-
+    public void dibujarArbol(Graphics g, int x, int y, int xOffset) {
+        dibujarNodo(g, raiz, x, y, xOffset);
     }
+
+    //metodo para dibujar el arbol
+    private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
+        if (nodo != null) {
+            g.setColor(Color.BLACK); //color de los nodos
+            g.fillOval(x - 15, y - 15, 30, 30); //dibuja el nodo
+            g.setColor(Color.WHITE); //color de la letra
+            g.drawString(String.valueOf(nodo.dato), x - 5, y + 5); //dibuja el valor del nodo
+
+            if (nodo.anterior != null) {
+                g.setColor(Color.BLACK);
+                g.drawLine(x, y, x - xOffset, y + 50); //dibuja la linea
+                dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
+            }
+            if (nodo.siguiente != null) {
+                g.setColor(Color.BLACK);
+                g.drawLine(x, y, x + xOffset, y + 50);
+                dibujarNodo(g, nodo.siguiente, x + xOffset, y + 50, xOffset / 2);
+            }
+        }
+    }
+
+
+/*   public static void main(String[] args) {
+
+        Arbol arbol = new Arbol();
+        arbol.insertar(1);
+        arbol.insertar(6);
+        arbol.insertar(2);
+        arbol.insertar(5);
+        arbol.insertar(4);
+
+        arbol.eliminarNodo( 4);
+
+        arbol.imprimir(arbol.raiz);
+
+
+    }*/
 }

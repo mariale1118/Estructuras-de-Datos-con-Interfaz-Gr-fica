@@ -1,10 +1,13 @@
 
-public class Nodo
+public class NodoC
 {
     int informacion;
-    Nodo siguiente; 
+    NodoC siguiente; 
     
 
     }
+
+
+
 
 

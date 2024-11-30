@@ -5,8 +5,8 @@ public class Nodo {
     Nodo siguiente;
     Nodo anterior;
 
-    Nodo (int valor) {
-        dato = valor;
+    Nodo (int dato) {
+        this.dato = dato;
         siguiente = null;
         anterior = null;
     }
