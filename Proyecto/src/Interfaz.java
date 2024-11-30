@@ -13,11 +13,11 @@ public class Interfaz extends JFrame {
         arbol = new Arbol();
         cola = new Cola();
         setTitle("Árbol Binario de Búsqueda y Cola");
-        setSize(600, 400); // Tamaño de la ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cerrar al salir
-        setLocationRelativeTo(null); // Centrar
+        setSize(600, 400); // tamaño de la ventana
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // cerrar al salir
+        setLocationRelativeTo(null); // centrar la ventana
 
-        // Menú con las opciones del árbol
+        // menu con las opciones del arbol
         JMenuBar menuBar = new JMenuBar();
         JMenu menuArbol = new JMenu("Árbol");
         JMenuItem agregarItem = new JMenuItem("Agregar Nodo");
@@ -30,14 +30,14 @@ public class Interfaz extends JFrame {
         menuBar.add(menuArbol);
         setJMenuBar(menuBar);
 
-        // Menú con las opciones de la cola
+        // menu con las opciones de la cola
         JMenu menuCola = new JMenu("Cola");
         JMenuItem menuColaItem = new JMenuItem("Abrir Menú de Cola");
 
         menuCola.add(menuColaItem);
         menuBar.add(menuCola);
 
-        // Panel para el dibujo del árbol
+        // panel del dibujo del arbol
         panelArbol = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -48,31 +48,31 @@ public class Interfaz extends JFrame {
         panelArbol.setBackground(Color.WHITE);
         add(panelArbol, BorderLayout.CENTER);
 
-        // Acción para agregar nodo
+        // anade funcionalidad para agregar nodo
         agregarItem.addActionListener(e -> {
             String valorStr = JOptionPane.showInputDialog(this, "Ingrese el valor del nodo:");
             try {
                 int valor = Integer.parseInt(valorStr);
                 arbol.insertar(valor);
-                panelArbol.repaint(); // Actualizar el dibujo del árbol
+                panelArbol.repaint(); // actualiza el dibujo del arbol
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
             }
         });
 
-        // Acción para eliminar nodo
+        // funcionalidad para eliminar nodo
         eliminarItem.addActionListener(e -> {
             String valorStr = JOptionPane.showInputDialog(this, "Ingrese el valor del nodo a eliminar:");
             try {
                 int valor = Integer.parseInt(valorStr);
                 arbol.eliminarNodo(valor);
-                panelArbol.repaint(); // Actualizar el dibujo del árbol
+                panelArbol.repaint(); 
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido.");
             }
         });
 
-        // Acción para buscar nodo
+        // funcionalidad para buscar nodo
         buscarItem.addActionListener(e -> {
             String valorStr = JOptionPane.showInputDialog(this, "Ingrese el valor del nodo a buscar:");
             try {
@@ -85,9 +85,10 @@ public class Interfaz extends JFrame {
             }
         });
 
-        // Menú de cola
+        // menu de cola
         menuColaItem.addActionListener(e -> {
             int opcion = 0;
+            
             do {
                 try {
                     String opcionStr = JOptionPane.showInputDialog(this,

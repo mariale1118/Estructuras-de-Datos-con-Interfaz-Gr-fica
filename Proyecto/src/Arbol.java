@@ -39,7 +39,6 @@ public class Arbol {
         return buscarRec(raiz, dato);
     }
 
-
     //metodo recursivo para buscar
     public boolean buscarRec(Nodo nodo, int dato) {
         //caso base
@@ -62,6 +61,7 @@ public class Arbol {
         raiz = eliminarNodoRec(raiz, dato);
     }
 
+    //metodo recursivo para eliminar
     public Nodo eliminarNodoRec(Nodo nodo, int dato) {
         if (nodo == null) {
             return null;
@@ -112,41 +112,41 @@ public class Arbol {
         dibujarNodo(g, raiz, x, y, xOffset);
     }
 
-    //metodo para dibujar el arbol
-    private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
-        if (nodo != null) {
-            g.setColor(Color.BLACK); //color de los nodos
-            g.fillOval(x - 15, y - 15, 30, 30); //dibuja el nodo
-            g.setColor(Color.WHITE); //color de la letra
-            g.drawString(String.valueOf(nodo.dato), x - 5, y + 5); //dibuja el valor del nodo
+// Método para dibujar el árbol binario
+private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
+    if (nodo != null) {
+        int radio = 15; // Radio del nodo (diámetro = 30)
 
-            if (nodo.anterior != null) {
-                g.setColor(Color.BLACK);
-                g.drawLine(x, y, x - xOffset, y + 50); //dibuja la linea
-                dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
-            }
-            if (nodo.siguiente != null) {
-                g.setColor(Color.BLACK);
-                g.drawLine(x, y, x + xOffset, y + 50);
-                dibujarNodo(g, nodo.siguiente, x + xOffset, y + 50, xOffset / 2);
-            }
+        // Dibujar el nodo
+        g.setColor(Color.RED);
+        g.fillOval(x - radio, y - radio, 2 * radio, 2 * radio); // Dibujar el nodo como un círculo
+        g.setColor(Color.WHITE);
+        g.drawString(String.valueOf(nodo.dato), x - 5, y + 5); // Dibujar el valor dentro del nodo
+
+        if (nodo.anterior != null) {
+            // Coordenadas para la línea al nodo izquierdo
+            int xInicio = x - (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde izquierdo del nodo actual
+            int yInicio = y + (int) (radio * Math.sin(Math.PI / 4));
+            int xFin = (x - xOffset) + (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde superior del nodo hijo izquierdo
+            int yFin = (y + 50) - (int) (radio * Math.sin(Math.PI / 4));
+
+            g.setColor(Color.BLACK);
+            g.drawLine(xInicio, yInicio, xFin, yFin); // Dibujar línea
+            dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
+        }
+
+        if (nodo.siguiente != null) {
+            // Coordenadas para la línea al nodo derecho
+            int xInicio = x + (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde derecho del nodo actual
+            int yInicio = y + (int) (radio * Math.sin(Math.PI / 4));
+            int xFin = (x + xOffset) - (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde superior del nodo hijo derecho
+            int yFin = (y + 50) - (int) (radio * Math.sin(Math.PI / 4));
+
+            g.setColor(Color.BLACK);
+            g.drawLine(xInicio, yInicio, xFin, yFin); // Dibujar línea
+            dibujarNodo(g, nodo.siguiente, x + xOffset, y + 50, xOffset / 2);
         }
     }
+}
 
-
-/*   public static void main(String[] args) {
-
-        Arbol arbol = new Arbol();
-        arbol.insertar(1);
-        arbol.insertar(6);
-        arbol.insertar(2);
-        arbol.insertar(5);
-        arbol.insertar(4);
-
-        arbol.eliminarNodo( 4);
-
-        arbol.imprimir(arbol.raiz);
-
-
-    }*/
 }
