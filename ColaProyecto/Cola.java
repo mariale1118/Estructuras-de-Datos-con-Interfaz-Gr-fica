@@ -1,12 +1,12 @@
 import javax.swing.JOptionPane;
-
+//mi cola va de derecha a izquierda, no de izquierda a derecha, siendo el la cabeza de la cola el que está más a la derecha
 public class Cola
 {
     private NodoC headCola, tailCola; //punteros
     String cola = ""; //cuál es el contenido de la cola
     
     public Cola(){
-        headCola = null;
+        headCola = null; //el profe dijo que todo en español o en ingles y le mencioné que había dejado estas únicas en ingles y visto bueno
         tailCola = null;
         //valores iniciales
     }
