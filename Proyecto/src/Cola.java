@@ -56,19 +56,17 @@ public class Cola
     
     //método para mostrar el contenido de la cola/ su recorrido
     public void MostrarContenido() {
-        Nodo1 recorrido = headCola;
-        String colaInvertida = ""; //para invertir la cadena de texto cuando se imprime
+        Nodo1 recorrido = headCola; // empieza desde la cabeza de la cola
+        cola = ""; // reinicia el contenido para evitar acumulaciones de ejecuciones anteriores
         
-        while(recorrido != null) {
-         cola += recorrido.informacion + " ";
-         recorrido = recorrido.siguiente;
+        // recorre la cola y construye la cadena con los valores
+        while (recorrido != null) {
+            cola += recorrido.informacion + " ";
+            recorrido = recorrido.siguiente;
         }
         
-        String cadena [] = cola.split(" ");//split permite separar los caracteres para que no invierta toda la cadena
-        for (int i = cadena.length -1; i >= 0; i--) {
-            colaInvertida += " " + cadena[i];}
-        JOptionPane.showMessageDialog(null, colaInvertida);
-        cola = "";
+        // muestra la cola
+        JOptionPane.showMessageDialog(null, cola.trim());
     }
 }
     
