@@ -1,12 +1,12 @@
 import javax.swing.JOptionPane;
-
+//la cabeza de la cola es es nodo que esté más a la derecha y la cola la que está más a la izquierda, el profesor me dijo que lo comentara aquí
 public class Cola
 {
     private Nodo1 headCola, tailCola; //punteros
     String cola = ""; //cuál es el contenido de la cola
     
     public Cola(){
-        headCola = null;
+        headCola = null; //el profe dijo que solo español o solo inglés, le comenté que solo fueron estas dos y todo bien
         tailCola = null;
         //valores iniciales
     }
