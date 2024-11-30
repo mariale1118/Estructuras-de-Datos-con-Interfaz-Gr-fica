@@ -112,41 +112,40 @@ public class Arbol {
         dibujarNodo(g, raiz, x, y, xOffset);
     }
 
-// Método para dibujar el árbol binario
-private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
-    if (nodo != null) {
-        int radio = 15; // Radio del nodo (diámetro = 30)
+    // metodo para dibujar el arbol binario
+    private void dibujarNodo(Graphics g, Nodo nodo, int x, int y, int xOffset) {
+        if (nodo != null) {
+            int radio = 15; // tamano del nodo
 
-        // Dibujar el nodo
-        g.setColor(Color.RED);
-        g.fillOval(x - radio, y - radio, 2 * radio, 2 * radio); // Dibujar el nodo como un círculo
-        g.setColor(Color.WHITE);
-        g.drawString(String.valueOf(nodo.dato), x - 5, y + 5); // Dibujar el valor dentro del nodo
+            // dibujar el nodo
+            g.setColor(Color.RED);
+            g.fillOval(x - radio, y - radio, 2 * radio, 2 * radio); // dibuja el nodo como un circulo
+            g.setColor(Color.WHITE);
+            g.drawString(String.valueOf(nodo.dato), x - 5, y + 5); // dibuja el valor dentro
 
-        if (nodo.anterior != null) {
-            // Coordenadas para la línea al nodo izquierdo
-            int xInicio = x - (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde izquierdo del nodo actual
-            int yInicio = y + (int) (radio * Math.sin(Math.PI / 4));
-            int xFin = (x - xOffset) + (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde superior del nodo hijo izquierdo
-            int yFin = (y + 50) - (int) (radio * Math.sin(Math.PI / 4));
+            if (nodo.anterior != null) {
+                // coordenadas para la linea al nodo izquierdo
+                int xInicio = x - (int) (radio * Math.cos(Math.PI / 4)); // borde izquierdo del nodo actual
+                int yInicio = y + (int) (radio * Math.sin(Math.PI / 4));
+                int xFin = (x - xOffset) + (int) (radio * Math.cos(Math.PI / 4)); // borde superior del nodo hijo izquierdo
+                int yFin = (y + 50) - (int) (radio * Math.sin(Math.PI / 4));
 
-            g.setColor(Color.BLACK);
-            g.drawLine(xInicio, yInicio, xFin, yFin); // Dibujar línea
-            dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
-        }
+                g.setColor(Color.BLACK);
+                g.drawLine(xInicio, yInicio, xFin, yFin); // dibuja la linea
+                dibujarNodo(g, nodo.anterior, x - xOffset, y + 50, xOffset / 2);
+            }
 
-        if (nodo.siguiente != null) {
-            // Coordenadas para la línea al nodo derecho
-            int xInicio = x + (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde derecho del nodo actual
-            int yInicio = y + (int) (radio * Math.sin(Math.PI / 4));
-            int xFin = (x + xOffset) - (int) (radio * Math.cos(Math.PI / 4)); // Punto en el borde superior del nodo hijo derecho
-            int yFin = (y + 50) - (int) (radio * Math.sin(Math.PI / 4));
+            if (nodo.siguiente != null) {
+                // coordenadas para la linea al nodo derecho
+                int xInicio = x + (int) (radio * Math.cos(Math.PI / 4)); // borde derecho del nodo actual
+                int yInicio = y + (int) (radio * Math.sin(Math.PI / 4));
+                int xFin = (x + xOffset) - (int) (radio * Math.cos(Math.PI / 4)); // borde superior del nodo hijo derecho
+                int yFin = (y + 50) - (int) (radio * Math.sin(Math.PI / 4));
 
-            g.setColor(Color.BLACK);
-            g.drawLine(xInicio, yInicio, xFin, yFin); // Dibujar línea
-            dibujarNodo(g, nodo.siguiente, x + xOffset, y + 50, xOffset / 2);
+                g.setColor(Color.BLACK);
+                g.drawLine(xInicio, yInicio, xFin, yFin); // dibuja la linea
+                dibujarNodo(g, nodo.siguiente, x + xOffset, y + 50, xOffset / 2);
+            }
         }
     }
-}
-
 }
